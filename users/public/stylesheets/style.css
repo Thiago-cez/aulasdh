@@ -24,7 +24,7 @@ a {
 }
 
 .dark-mode > form > button {
-  background: #3cfac1;
+  background: #162d43;
 }
 
 form {
@@ -67,8 +67,8 @@ form > input::placeholder {
 #darkBtn {
   position: absolute;
   top: 5px;
-  right:5px;
-  padding:24px;
+  right: 5px;
+  padding: 24px;
   transition: background 0.2s;
 }
 
@@ -87,7 +87,6 @@ form > input::placeholder {
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-  
 }
 
 .dropbtn:hover {
@@ -110,10 +109,9 @@ form > input::placeholder {
   display: block;
 }
 
-
-.error{
-  display:none;
-  color: #dbdf0c
+.error {
+  display: none;
+  color: #FF6B6B;
 }
 
 .show {
