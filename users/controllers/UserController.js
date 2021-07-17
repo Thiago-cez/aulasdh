@@ -1,14 +1,13 @@
-const database = require("../database/models/index");
-
+const database = require('../database/models/index');
 
 const controller = {
     indexAll: async (req, res) => {
-       const users = await database.User.findAll({
-           attributes: ["id", "email", "createdAt", "updatedAt"] 
-       });
-       return res.json(users);
+        const users = await database.User.findAll({
+            attributes: ['id', 'email', 'createdAt', 'updatedAt']
+        });
+        return res.json(users);
     },
-    store: async (req, res) => {
+    store: async (req, res) => {        
         const { email, password } = req.body;
         const user = await database.User.create({
             email,
@@ -18,12 +17,9 @@ const controller = {
             email: user.email,
             id: user.id,
             createdAt: user.createdAt,
-            updateAt: user.updatedAt
-
-        })
-    },
-
+            updatedAt: user.updatedAt,
+        });
+    }
 }
-
 
 module.exports = controller;
