@@ -7,6 +7,3 @@ export async function getCepData(cep) {
     return data;
 }
 
-
-
-//parei em 1h:35min - Introdução ao react
