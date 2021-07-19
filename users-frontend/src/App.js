@@ -1,15 +1,16 @@
 import './App.css';
 import { useState } from 'react';
 
-import Pagination from './components/pagination';
-
+// import Pagination from './components/pagination';
+import PhotoInput from './components/photoInput';
 
 import { getCepData } from './services/viacep';
 
 function App() {
   const [cep, setCep] = useState('');
   const [logradouro, setLogradouro] = useState('');
-  const [page, setPage] = useState(1)
+  const [photo, setPhoto] = useState();
+  // const [page, setPage] = useState(1);
   
   async function onBlurCep() {          
     const data = await getCepData(cep);
@@ -17,13 +18,17 @@ function App() {
   }
 
   return (
-    <div id="background" className="background">     
+    <div id="background" className="background">        
       <form id="formSignup">
-            <span id="userErrorSignup" className="error">Usuário incorreto</span>
-            <input id="userSignup" type="text" placeholder="Digite seu usuário"/> 
-            <span id="passwordErrorSignup" className="error">Senha incorreta</span>       
-            <input id="passwordSignup" type="password" placeholder="Digite sua senha"/>
-
+        <PhotoInput 
+          photo={photo} 
+          onPhotoChange={(newPhoto) => setPhoto(newPhoto)}
+        />    
+        <span id="userErrorSignup" className="error">Usuário incorreto</span>
+        <input id="userSignup" type="text" placeholder="Digite seu usuário"/> 
+        <span id="passwordErrorSignup" className="error">Senha incorreta</span>       
+        <input id="passwordSignup" type="password" placeholder="Digite sua senha"/>
+       
         <input 
           id="cep" 
           type="text" 
@@ -45,11 +50,12 @@ function App() {
         <input id="numero" type="text" placeholder="Digite o número da casa"/> 
        
         <button id="signupBtn" type="submit">Cadastrar</button>
-          <Pagination
-            page={page} 
-            onPageChange={(newPage) => setPage(newPage)}/> 
-      </form>  
-                
+        {/* <Pagination 
+          page={page} 
+          onPageChange={(newPage) => setPage(newPage)}
+        /> */}
+      </form>   
+      
     </div>         
   );
 }
