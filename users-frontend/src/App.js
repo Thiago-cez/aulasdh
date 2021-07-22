@@ -1,16 +1,27 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-// import Pagination from './components/pagination';
 import PhotoInput from './components/photoInput';
+import Pagination from "./components/pagination"
 
 import { getCepData } from './services/viacep';
+import { getUsers } from "./services/users"
 
 function App() {
   const [cep, setCep] = useState('');
   const [logradouro, setLogradouro] = useState('');
   const [photo, setPhoto] = useState();
-  // const [page, setPage] = useState(1);
+  const [users, setUsers] = useState([]);
+  const [page, setPage] = useState(1);
+
+  useEffect( () => {
+    async function loadUserList() {
+     const usersBackend = await getUsers(page); 
+     setUsers(usersBackend)
+    }
+
+    loadUserList();
+  },[page]);
   
   async function onBlurCep() {          
     const data = await getCepData(cep);
@@ -50,12 +61,17 @@ function App() {
         <input id="numero" type="text" placeholder="Digite o número da casa"/> 
        
         <button id="signupBtn" type="submit">Cadastrar</button>
-        {/* <Pagination 
+        
+      </form>   
+         <ul>
+            {users.map((usuario , index) => (
+              <li key={index}>{usuario.email}</li>
+            ))}
+         </ul>
+         <Pagination 
           page={page} 
           onPageChange={(newPage) => setPage(newPage)}
-        /> */}
-      </form>   
-      
+        /> 
     </div>         
   );
 }
